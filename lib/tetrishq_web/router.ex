@@ -19,6 +19,7 @@ defmodule TetrishqWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/replays", ReplaysController, :index
   end
 
   # Other scopes may use custom stacks.
