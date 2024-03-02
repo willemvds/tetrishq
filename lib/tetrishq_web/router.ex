@@ -6,7 +6,7 @@ defmodule TetrishqWeb.Router do
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, html: {TetrishqWeb.Layouts, :root}
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug TetrishqWeb.Plugs.Locale, "en"
   end
@@ -20,6 +20,7 @@ defmodule TetrishqWeb.Router do
 
     get "/", PageController, :home
     get "/replays", ReplaysController, :index
+    post "/replays", ReplaysController, :index
   end
 
   # Other scopes may use custom stacks.
