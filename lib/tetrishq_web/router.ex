@@ -20,7 +20,7 @@ defmodule TetrishqWeb.Router do
 
     get "/", PageController, :home
     get "/replays", ReplaysController, :index
-    post "/replays", ReplaysController, :index
+    post "/replays", ReplaysController, :upload
   end
 
   # Other scopes may use custom stacks.

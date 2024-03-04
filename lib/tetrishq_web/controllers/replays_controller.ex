@@ -1,12 +1,14 @@
 defmodule TetrishqWeb.ReplaysController do
   use TetrishqWeb, :controller
 
-  def index(conn, params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
+  def index(conn, _params) do
+    render(conn, :index, layout: false)
+  end
+
+  def upload(conn, params) do
     IO.inspect(params)
 
-    if upload = params["ff"] do
+    if upload = params["replay"] do
       extension = Path.extname(upload.filename)
       IO.puts(extension)
       Tetrishq.Replays.Commands.create_from_file(upload.path)
