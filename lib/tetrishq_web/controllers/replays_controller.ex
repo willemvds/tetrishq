@@ -19,3 +19,4 @@ defmodule TetrishqWeb.ReplaysController do
     render(conn, :index, layout: false)
   end
 end
+
