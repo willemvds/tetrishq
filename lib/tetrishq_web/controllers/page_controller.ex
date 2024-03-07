@@ -1,5 +1,5 @@
-defmodule TetrishqWeb.PageController do
-  use TetrishqWeb, :controller
+defmodule TetrisHQWeb.PageController do
+  use TetrisHQWeb, :controller
 
   def home(conn, _params) do
     # The home page is often custom made,

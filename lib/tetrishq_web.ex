@@ -1,12 +1,12 @@
-defmodule TetrishqWeb do
+defmodule TetrisHQWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use TetrishqWeb, :controller
-      use TetrishqWeb, :html
+      use TetrisHQWeb, :controller
+      use TetrisHQWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -40,10 +40,10 @@ defmodule TetrishqWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: TetrishqWeb.Layouts]
+        layouts: [html: TetrisHQWeb.Layouts]
 
       import Plug.Conn
-      import TetrishqWeb.Gettext
+      import TetrisHQWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -52,7 +52,7 @@ defmodule TetrishqWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {TetrishqWeb.Layouts, :app}
+        layout: {TetrisHQWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -84,8 +84,8 @@ defmodule TetrishqWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import TetrishqWeb.CoreComponents
-      import TetrishqWeb.Gettext
+      import TetrisHQWeb.CoreComponents
+      import TetrisHQWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -98,9 +98,9 @@ defmodule TetrishqWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: TetrishqWeb.Endpoint,
-        router: TetrishqWeb.Router,
-        statics: TetrishqWeb.static_paths()
+        endpoint: TetrisHQWeb.Endpoint,
+        router: TetrisHQWeb.Router,
+        statics: TetrisHQWeb.static_paths()
     end
   end
 

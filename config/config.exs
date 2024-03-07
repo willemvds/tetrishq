@@ -8,18 +8,30 @@
 import Config
 
 config :tetrishq,
+  namespace: TetrisHQ,
+  ecto_repos: [TetrisHQ.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :tetrishq, TetrishqWeb.Endpoint,
+config :tetrishq, TetrisHQWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: TetrishqWeb.ErrorHTML, json: TetrishqWeb.ErrorJSON],
+    formats: [html: TetrisHQWeb.ErrorHTML, json: TetrisHQWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: Tetrishq.PubSub,
-  live_view: [signing_salt: "5TNhUh9C"]
+  pubsub_server: TetrisHQ.PubSub,
+  live_view: [signing_salt: "MmGpeZrb"]
+
+# Configure esbuild (the version is required)
+config :esbuild,
+  version: "0.17.11",
+  tetrishq: [
+    args:
+      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -1,5 +1,5 @@
-defmodule TetrishqWeb.PageControllerTest do
-  use TetrishqWeb.ConnCase
+defmodule TetrisHQWeb.PageControllerTest do
+  use TetrisHQWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

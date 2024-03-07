@@ -1,5 +1,5 @@
-defmodule TetrishqWeb.Layouts do
-  use TetrishqWeb, :html
+defmodule TetrisHQWeb.Layouts do
+  use TetrisHQWeb, :html
 
   embed_templates "layouts/*"
 end

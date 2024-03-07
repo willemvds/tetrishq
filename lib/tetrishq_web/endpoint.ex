@@ -1,4 +1,4 @@
-defmodule TetrishqWeb.Endpoint do
+defmodule TetrisHQWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :tetrishq
 
   # The session will be stored in the cookie and signed,
@@ -7,13 +7,13 @@ defmodule TetrishqWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_tetrishq_key",
-    signing_salt: "67Sykf/H",
+    signing_salt: "lv+1Ub6A",
     same_site: "Lax"
   ]
 
-  # socket "/live", Phoenix.LiveView.Socket,
-  #   websocket: [connect_info: [session: @session_options]],
-  #   longpoll: [connect_info: [session: @session_options]]
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]],
+    longpoll: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -23,7 +23,7 @@ defmodule TetrishqWeb.Endpoint do
     at: "/",
     from: :tetrishq,
     gzip: false,
-    only: TetrishqWeb.static_paths()
+    only: TetrisHQWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -31,7 +31,12 @@ defmodule TetrishqWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :tetrishq
   end
+
+  plug Phoenix.LiveDashboard.RequestLogger,
+    param_key: "request_logger",
+    cookie_key: "request_logger"
 
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
@@ -44,16 +49,5 @@ defmodule TetrishqWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug :introspect
-  plug TetrishqWeb.Router
-
-  def introspect(conn, _opts) do
-    IO.puts("""
-    Verb: #{inspect(conn.method)}
-    Host: #{inspect(conn.host)}
-    Headers: #{inspect(conn.req_headers)}
-    """)
-
-    conn
-  end
+  plug TetrisHQWeb.Router
 end

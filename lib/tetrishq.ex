@@ -1,6 +1,6 @@
-defmodule Tetrishq do
+defmodule TetrisHQ do
   @moduledoc """
-  Tetrishq keeps the contexts that define your domain
+  TetrisHQ keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

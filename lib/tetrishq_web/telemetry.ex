@@ -1,4 +1,4 @@
-defmodule TetrishqWeb.Telemetry do
+defmodule TetrisHQWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -51,6 +51,29 @@ defmodule TetrishqWeb.Telemetry do
         unit: {:native, :millisecond}
       ),
 
+      # Database Metrics
+      summary("tetrishq.repo.query.total_time",
+        unit: {:native, :millisecond},
+        description: "The sum of the other measurements"
+      ),
+      summary("tetrishq.repo.query.decode_time",
+        unit: {:native, :millisecond},
+        description: "The time spent decoding the data received from the database"
+      ),
+      summary("tetrishq.repo.query.query_time",
+        unit: {:native, :millisecond},
+        description: "The time spent executing the query"
+      ),
+      summary("tetrishq.repo.query.queue_time",
+        unit: {:native, :millisecond},
+        description: "The time spent waiting for a database connection"
+      ),
+      summary("tetrishq.repo.query.idle_time",
+        unit: {:native, :millisecond},
+        description:
+          "The time the connection spent waiting before being checked out for the query"
+      ),
+
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
       summary("vm.total_run_queue_lengths.total"),
@@ -63,7 +86,7 @@ defmodule TetrishqWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {TetrishqWeb, :count_users, []}
+      # {TetrisHQWeb, :count_users, []}
     ]
   end
 end

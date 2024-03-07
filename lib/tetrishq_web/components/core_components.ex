@@ -1,4 +1,4 @@
-defmodule TetrishqWeb.CoreComponents do
+defmodule TetrisHQWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -17,7 +17,7 @@ defmodule TetrishqWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import TetrishqWeb.Gettext
+  import TetrisHQWeb.Gettext
 
   @doc """
   Renders a modal.
@@ -660,9 +660,9 @@ defmodule TetrishqWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(TetrishqWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(TetrisHQWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(TetrishqWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(TetrisHQWeb.Gettext, "errors", msg, opts)
     end
   end
 
