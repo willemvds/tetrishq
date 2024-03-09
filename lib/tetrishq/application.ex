@@ -11,8 +11,7 @@ defmodule TetrisHQ.Application do
       TetrisHQWeb.Telemetry,
       TetrisHQ.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:tetrishq, :ecto_repos),
-        skip: skip_migrations?()},
+       repos: Application.fetch_env!(:tetrishq, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:tetrishq, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: TetrisHQ.PubSub},
       # Start a worker by calling: TetrisHQ.Worker.start_link(arg)
