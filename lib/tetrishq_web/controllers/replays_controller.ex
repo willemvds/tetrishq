@@ -11,7 +11,7 @@ defmodule TetrisHQWeb.ReplaysController do
     if upload = params["replay"] do
       extension = Path.extname(upload.filename)
       IO.puts(extension)
-      Tetrishq.Replays.Commands.create_from_file(upload.path)
+      TetrisHQ.Replays.Commands.create_from_file(upload.path)
     else
       IO.puts("Eh wha?")
     end

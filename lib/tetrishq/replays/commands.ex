@@ -1,4 +1,4 @@
-defmodule Tetrishq.Replays.Commands do
+defmodule TetrisHQ.Replays.Commands do
   def create_from_file(path) do
     initial_hash_state = :crypto.hash_init(:sha256)
 
@@ -7,7 +7,14 @@ defmodule Tetrishq.Replays.Commands do
       |> Enum.reduce(initial_hash_state, &:crypto.hash_update(&2, &1))
       |> :crypto.hash_final()
 
+    TetrisHQ.Repo.insert(%TetrisHQ.Replay{
+      id: sha256,
+      uploaded_at: DateTime.utc_now(),
+    })
+
     formatted_sha256 = Base.encode16(sha256, case: :lower)
+
+
 
     File.cp!(path, "./#{formatted_sha256}")
 
