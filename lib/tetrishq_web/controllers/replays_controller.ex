@@ -2,7 +2,17 @@ defmodule TetrisHQWeb.ReplaysController do
   use TetrisHQWeb, :controller
 
   def index(conn, _params) do
-    render(conn, :index, layout: false)
+    replays = TetrisHQ.Replays.Queries.most_recent()
+
+    view_replays =
+      Enum.map(replays, fn replay -> %{replay | id: Base.encode16(replay.id, case: :lower)} end)
+
+    render(
+      conn,
+      :index,
+      layout: false,
+      replays: view_replays
+    )
   end
 
   def upload(conn, params) do
@@ -16,6 +26,7 @@ defmodule TetrisHQWeb.ReplaysController do
       IO.puts("Eh wha?")
     end
 
-    render(conn, :index, layout: false)
+    replays = TetrisHQ.Replays.Queries.most_recent()
+    render(conn, :index, layout: false, replays: replays)
   end
 end

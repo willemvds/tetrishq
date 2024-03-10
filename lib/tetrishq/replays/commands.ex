@@ -9,12 +9,10 @@ defmodule TetrisHQ.Replays.Commands do
 
     TetrisHQ.Repo.insert(%TetrisHQ.Replay{
       id: sha256,
-      uploaded_at: DateTime.utc_now(),
+      uploaded_at: DateTime.utc_now()
     })
 
     formatted_sha256 = Base.encode16(sha256, case: :lower)
-
-
 
     File.cp!(path, "./#{formatted_sha256}")
 
