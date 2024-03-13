@@ -10,7 +10,8 @@ import Config
 config :tetrishq,
   namespace: TetrisHQ,
   ecto_repos: [TetrisHQ.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  replays_path: "./replays"
 
 # Configures the endpoint
 config :tetrishq, TetrisHQWeb.Endpoint,

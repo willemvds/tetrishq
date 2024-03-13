@@ -14,7 +14,8 @@ defmodule TetrisHQ.Replays.Commands do
 
     formatted_sha256 = Base.encode16(sha256, case: :lower)
 
-    File.cp!(path, "./#{formatted_sha256}")
+    replays_path = Application.get_env(:TetrisHQ, :replays_path)
+    File.cp!(path, Path.join(replays_path, "#{formatted_sha256}"))
 
     sha256
   end
